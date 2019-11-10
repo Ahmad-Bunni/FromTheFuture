@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Shared\" />
+    <Folder Include="Users\FutureBoxes\" />
+    <Folder Include="Users\FutureItems\" />
+    <Folder Include="Users\Templates\" />
+  </ItemGroup>
+
+</Project>
