@@ -1,3 +1,3 @@
 # FromTheFuture
 
-Send files to the futures
+Send files to the future
