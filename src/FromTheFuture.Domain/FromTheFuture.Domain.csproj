@@ -5,9 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Shared\" />
-    <Folder Include="Users\FutureBoxes\" />
-    <Folder Include="Users\FutureItems\" />
     <Folder Include="Users\Templates\" />
   </ItemGroup>
 

@@ -5,6 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MediatR" Version="7.0.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.0">
       <PrivateAssets>all</PrivateAssets>
@@ -15,7 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="FutureBoxes\CreateUserFutureBox\" />
     <Folder Include="FutureBoxes\GetUserFutureBoxDetails\" />
     <Folder Include="FutureBoxes\GetUserSentBoxes\" />
     <Folder Include="FutureBoxes\ModifyUserFutureBox\" />
@@ -25,13 +26,17 @@
     <Folder Include="FutureItems\GetUserFutureItemDetails\" />
     <Folder Include="FutureItems\GetUserFutureItems\" />
     <Folder Include="FutureItems\RemoveUserFutureItem\" />
-    <Folder Include="Users\CreateUser\" />
     <Folder Include="Users\ModifyUser\" />
     <Folder Include="Users\DeleteUser\" />
     <Folder Include="Users\ActivateUser\" />
     <Folder Include="Templates\CreateUserTemplate\" />
     <Folder Include="Templates\GetUserTemplateDetails\" />
     <Folder Include="Templates\GetUserTemplates\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FromTheFuture.Domain\FromTheFuture.Domain.csproj" />
+    <ProjectReference Include="..\FromTheFuture.Infrastructure\FromTheFuture.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
