@@ -23,11 +23,9 @@ namespace FromTheFuture.Infrastructure.Users
 
         public async Task<User> GetUserByIdAsync(Guid Id)
         {
-            return await _context.Users
-                .IncludePaths(
-                UserEntityTypeConfiguration.FutureBoxes,
-                UserEntityTypeConfiguration.FutureItems,
-                UserEntityTypeConfiguration.FutureBoxItems)
+            return await _context.Users.Include(TableNames.FutureItems)
+                .IncludePaths(TableNames.FutureBoxes,
+                TableNames.FutureBoxItems)
                 .FirstOrDefaultAsync(x => x.Id == Id);
         }
 

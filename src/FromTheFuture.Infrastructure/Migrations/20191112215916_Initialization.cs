@@ -25,50 +25,50 @@ namespace FromTheFuture.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "FutureBoxes",
+                name: "FutureBox",
                 schema: "user",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(nullable: true),
-                    UserId = table.Column<Guid>(nullable: false)
+                    UserID = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_FutureBoxes", x => x.Id);
+                    table.PrimaryKey("PK_FutureBox", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_FutureBoxes_Users_UserId",
-                        column: x => x.UserId,
+                        name: "FK_FutureBox_Users_UserID",
+                        column: x => x.UserID,
                         principalSchema: "user",
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "FutureItems",
+                name: "FutureItem",
                 schema: "user",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     Type = table.Column<int>(nullable: false),
-                    UserId = table.Column<Guid>(nullable: false)
+                    UserID = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_FutureItems", x => x.Id);
+                    table.PrimaryKey("PK_FutureItem", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_FutureItems_Users_UserId",
-                        column: x => x.UserId,
+                        name: "FK_FutureItem_Users_UserID",
+                        column: x => x.UserID,
                         principalSchema: "user",
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "FutureBoxItems",
+                name: "FutureBoxItem",
                 schema: "user",
                 columns: table => new
                 {
@@ -77,55 +77,54 @@ namespace FromTheFuture.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_FutureBoxItems", x => new { x.FutureItemId, x.FutureBoxId });
+                    table.PrimaryKey("PK_FutureBoxItem", x => new { x.FutureBoxId, x.FutureItemId });
                     table.ForeignKey(
-                        name: "FK_FutureBoxItems_FutureBoxes_FutureBoxId",
+                        name: "FK_FutureBoxItem_FutureBox_FutureBoxId",
                         column: x => x.FutureBoxId,
                         principalSchema: "user",
-                        principalTable: "FutureBoxes",
+                        principalTable: "FutureBox",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    //manually added as owned entities with multiple owners is not yet supported by EF Core
                     table.ForeignKey(
-                        name: "FK_FutureBoxItems_FutureItems_FutureItemId",
+                        name: "FK_FutureBoxItem_FutureItem_FutureItemId",
                         column: x => x.FutureItemId,
                         principalSchema: "user",
-                        principalTable: "FutureItems",
+                        principalTable: "FutureItem",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_FutureBoxes_UserId",
+                name: "IX_FutureBox_UserID",
                 schema: "user",
-                table: "FutureBoxes",
-                column: "UserId");
+                table: "FutureBox",
+                column: "UserID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_FutureBoxItems_FutureBoxId",
+                name: "IX_FutureBoxItem_FutureItemId",
                 schema: "user",
-                table: "FutureBoxItems",
-                column: "FutureBoxId");
+                table: "FutureBoxItem",
+                column: "FutureItemId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_FutureItems_UserId",
+                name: "IX_FutureItem_UserID",
                 schema: "user",
-                table: "FutureItems",
-                column: "UserId");
+                table: "FutureItem",
+                column: "UserID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "FutureBoxItems",
+                name: "FutureBoxItem",
                 schema: "user");
 
             migrationBuilder.DropTable(
-                name: "FutureItems",
+                name: "FutureBox",
                 schema: "user");
 
             migrationBuilder.DropTable(
-                name: "FutureBoxes",
+                name: "FutureItem",
                 schema: "user");
 
             migrationBuilder.DropTable(

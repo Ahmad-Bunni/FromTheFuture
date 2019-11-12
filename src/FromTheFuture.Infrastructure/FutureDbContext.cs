@@ -1,5 +1,10 @@
 ﻿using FromTheFuture.Domain.Users;
+using FromTheFuture.Domain.Users.FutureBoxes;
+using FromTheFuture.Domain.Users.FutureItems;
+using FromTheFuture.Infrastructure.SeedWork;
 using FromTheFuture.Infrastructure.Users;
+using FromTheFuture.Infrastructure.Users.FutureBoxes;
+using FromTheFuture.Infrastructure.Users.FutureItems;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
@@ -16,8 +21,13 @@ namespace FromTheFuture.Infrastructure
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.HasDefaultSchema(SchemaNames.FutureUser);
             modelBuilder.ApplyConfiguration(new UserEntityTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new FutureBoxEntityTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new FutureItemsEntityTypeConfiguration());
 
+            //many to many configuration
+            modelBuilder.Entity<FutureBoxItem>().HasKey(x => new { x.FutureBoxId, x.FutureItemId });
         }
         public class MyContextContextFactory : IDesignTimeDbContextFactory<FutureDbContext>
         {

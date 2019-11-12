@@ -4,14 +4,16 @@ using FromTheFuture.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FromTheFuture.Infrastructure.Migrations
 {
     [DbContext(typeof(FutureDbContext))]
-    partial class FutureDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191112215916_Initialization")]
+    partial class Initialization
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
