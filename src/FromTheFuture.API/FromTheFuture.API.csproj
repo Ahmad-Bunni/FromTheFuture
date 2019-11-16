@@ -5,6 +5,25 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="FutureBoxes\DeleteUserFutureBox\**" />
+    <Compile Remove="FutureBoxes\GetUserFutureBoxDetails\**" />
+    <Compile Remove="FutureBoxes\GetUserReceivedBoxes\**" />
+    <Compile Remove="FutureBoxes\GetUserSentBoxes\**" />
+    <Content Remove="FutureBoxes\DeleteUserFutureBox\**" />
+    <Content Remove="FutureBoxes\GetUserFutureBoxDetails\**" />
+    <Content Remove="FutureBoxes\GetUserReceivedBoxes\**" />
+    <Content Remove="FutureBoxes\GetUserSentBoxes\**" />
+    <EmbeddedResource Remove="FutureBoxes\DeleteUserFutureBox\**" />
+    <EmbeddedResource Remove="FutureBoxes\GetUserFutureBoxDetails\**" />
+    <EmbeddedResource Remove="FutureBoxes\GetUserReceivedBoxes\**" />
+    <EmbeddedResource Remove="FutureBoxes\GetUserSentBoxes\**" />
+    <None Remove="FutureBoxes\DeleteUserFutureBox\**" />
+    <None Remove="FutureBoxes\GetUserFutureBoxDetails\**" />
+    <None Remove="FutureBoxes\GetUserReceivedBoxes\**" />
+    <None Remove="FutureBoxes\GetUserSentBoxes\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MediatR" Version="7.0.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.0.0" />
@@ -17,21 +36,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="FutureBoxes\GetUserFutureBoxDetails\" />
-    <Folder Include="FutureBoxes\GetUserSentBoxes\" />
-    <Folder Include="FutureBoxes\ModifyUserFutureBox\" />
-    <Folder Include="FutureBoxes\GetUserReceivedBoxes\" />
-    <Folder Include="FutureBoxes\DeleteUserFutureBox\" />
-    <Folder Include="FutureItems\CreateUserFutureItem\" />
-    <Folder Include="FutureItems\GetUserFutureItemDetails\" />
-    <Folder Include="FutureItems\GetUserFutureItems\" />
-    <Folder Include="FutureItems\RemoveUserFutureItem\" />
-    <Folder Include="Users\ModifyUser\" />
-    <Folder Include="Users\DeleteUser\" />
     <Folder Include="Users\ActivateUser\" />
-    <Folder Include="Templates\CreateUserTemplate\" />
-    <Folder Include="Templates\GetUserTemplateDetails\" />
-    <Folder Include="Templates\GetUserTemplates\" />
   </ItemGroup>
 
   <ItemGroup>

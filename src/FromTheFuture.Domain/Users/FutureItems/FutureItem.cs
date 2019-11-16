@@ -1,11 +1,16 @@
 ﻿using FromTheFuture.Domain.Shared;
 using FromTheFuture.Domain.Users.FutureBoxes;
+using System;
 using System.Collections.Generic;
 
 namespace FromTheFuture.Domain.Users.FutureItems
 {
     public class FutureItem : BaseEntity
     {
+        public string Name { get; private set; }
+        public Uri StorageUri { get; private set; }
+        public FutureItemTypes ItemType { get; private set; }
+
         private readonly List<FutureBoxItem> _futureBoxItems;
 
         private FutureItem()
@@ -13,8 +18,13 @@ namespace FromTheFuture.Domain.Users.FutureItems
             _futureBoxItems = new List<FutureBoxItem>();
         }
 
-        public string Name { get; set; }
-        public FutureItemTypes Type { get; set; }
+        public FutureItem(Guid id, string name, Uri storageUri, FutureItemTypes itemType)
+        {
+            Id = id;
+            Name = name;
+            StorageUri = storageUri;
+            ItemType = itemType;
+        }
     }
 
 

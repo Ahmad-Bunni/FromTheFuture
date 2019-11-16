@@ -10,14 +10,13 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FromTheFuture.Infrastructure.Migrations
 {
     [DbContext(typeof(FutureDbContext))]
-    [Migration("20191112215916_Initialization")]
-    partial class Initialization
+    [Migration("20191116222152_Project-Init")]
+    partial class ProjectInit
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasDefaultSchema("user")
                 .HasAnnotation("ProductVersion", "3.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -31,13 +30,14 @@ namespace FromTheFuture.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid?>("UserID")
+                        .IsRequired()
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
                     b.HasIndex("UserID");
 
-                    b.ToTable("FutureBox");
+                    b.ToTable("FutureBoxes","user");
                 });
 
             modelBuilder.Entity("FromTheFuture.Domain.Users.FutureBoxes.FutureBoxItem", b =>
@@ -52,7 +52,7 @@ namespace FromTheFuture.Infrastructure.Migrations
 
                     b.HasIndex("FutureItemId");
 
-                    b.ToTable("FutureBoxItem");
+                    b.ToTable("FutureBoxItems","user");
                 });
 
             modelBuilder.Entity("FromTheFuture.Domain.Users.FutureItems.FutureItem", b =>
@@ -60,20 +60,24 @@ namespace FromTheFuture.Infrastructure.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("ItemType")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
+                    b.Property<string>("StorageUri")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid?>("UserID")
+                        .IsRequired()
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
                     b.HasIndex("UserID");
 
-                    b.ToTable("FutureItem");
+                    b.ToTable("FutureItems","user");
                 });
 
             modelBuilder.Entity("FromTheFuture.Domain.Users.User", b =>
@@ -89,14 +93,16 @@ namespace FromTheFuture.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users","user");
                 });
 
             modelBuilder.Entity("FromTheFuture.Domain.Users.FutureBoxes.FutureBox", b =>
                 {
                     b.HasOne("FromTheFuture.Domain.Users.User", null)
                         .WithMany("_futureBoxes")
-                        .HasForeignKey("UserID");
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("FromTheFuture.Domain.Users.FutureBoxes.FutureBoxItem", b =>
@@ -118,7 +124,9 @@ namespace FromTheFuture.Infrastructure.Migrations
                 {
                     b.HasOne("FromTheFuture.Domain.Users.User", null)
                         .WithMany("_futureItems")
-                        .HasForeignKey("UserID");
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

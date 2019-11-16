@@ -10,31 +10,27 @@ namespace FromTheFuture.API.Users.CreateUser
     public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, UserDto>
     {
         private readonly IUserRepository _userRepository;
-        private readonly IUnitOfWork _unitOfWork;
-
-        public CreateUserCommandHandler(IUserRepository userRepository, IUnitOfWork unitOfWork)
+        public CreateUserCommandHandler(IUserRepository userRepository)
         {
             _userRepository = userRepository;
-            _unitOfWork = unitOfWork;
         }
-
 
         public async Task<UserDto> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
             var user = new User(request.Name, request.Email);
 
-            await _userRepository.CreateUser(user);
+            await _userRepository.AddUserAsync(user);
 
-            var result = await _unitOfWork.CommitAsync();
+            var result = await _userRepository.CommitAsync();
 
-            if (result.IsSuccessful)
+            if (result == CommitResult.Success)
             {
                 return new UserDto { Id = user.Id };
 
             }
             else
             {
-                throw result.Exception;
+                return new UserDto();
             }
 
         }

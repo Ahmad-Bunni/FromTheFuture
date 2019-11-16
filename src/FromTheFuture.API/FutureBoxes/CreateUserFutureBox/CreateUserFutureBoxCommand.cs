@@ -1,7 +1,5 @@
-﻿using FromTheFuture.Domain.Users.FutureItems;
-using MediatR;
+﻿using MediatR;
 using System;
-using System.Collections.Generic;
 
 namespace FromTheFuture.API.FutureBoxes.CreateUserFutureBox
 {
@@ -9,12 +7,10 @@ namespace FromTheFuture.API.FutureBoxes.CreateUserFutureBox
     {
         public Guid UserId { get; set; }
         public string Name { get; set; }
-        public List<FutureItem> FutureItems { get; set; }
 
-        public CreateUserFutureBoxCommand(Guid userId, string name, List<FutureItem> futureItems)
+        public CreateUserFutureBoxCommand(Guid userId, string name)
         {
             Name = name;
-            FutureItems = futureItems;
             UserId = userId;
         }
     }

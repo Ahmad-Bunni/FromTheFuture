@@ -1,11 +1,10 @@
 ﻿using FromTheFuture.Domain.Users.FutureItems;
 using System;
 
-namespace FromTheFuture.API.FutureItems
+namespace FromTheFuture.API.FutureItems.CreateUserFutureItem
 {
-    public class FutureItemDto
+    public class CreateUserFutureItemRequest
     {
-        public Guid Id { get; set; }
         public string Name { get; set; }
         public Uri StorageUri { get; set; }
         public FutureItemTypes ItemType { get; set; }

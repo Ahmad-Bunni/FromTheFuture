@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using FromTheFuture.Domain.Shared;
 using FromTheFuture.Domain.Users.FutureBoxes;
 using FromTheFuture.Domain.Users.FutureItems;
@@ -10,8 +12,8 @@ namespace FromTheFuture.Domain.Users
         public string Name { get; set; }
         public string Email { get; set; }
 
-        private readonly List<FutureBox> _futureBoxes;
-        private readonly List<FutureItem> _futureItems;
+        private readonly ICollection<FutureBox> _futureBoxes;
+        private readonly ICollection<FutureItem> _futureItems;
 
         public User(string name, string email)
         {
@@ -32,6 +34,14 @@ namespace FromTheFuture.Domain.Users
         public void CreateFutureItem(FutureItem item)
         {
             _futureItems.Add(item);
+        }
+
+        public void ModifyFutureBox(Guid boxId, string name, ICollection<FutureBoxItem> futureBoxItems)
+        {
+            var futureBox = _futureBoxes.SingleOrDefault(x => x.Id == boxId);
+
+            futureBox.Modify(name, futureBoxItems);
+
         }
     }
 }

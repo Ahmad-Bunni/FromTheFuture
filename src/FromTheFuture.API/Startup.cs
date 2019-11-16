@@ -27,7 +27,7 @@ namespace FromTheFuture.API
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
 
             services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddControllers();

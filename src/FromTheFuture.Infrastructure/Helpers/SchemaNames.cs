@@ -1,4 +1,4 @@
-﻿namespace FromTheFuture.Infrastructure.SeedWork
+﻿namespace FromTheFuture.Infrastructure.Helpers
 {
     internal class SchemaNames
     {

@@ -4,30 +4,28 @@ using System.Threading.Tasks;
 
 namespace FromTheFuture.Infrastructure
 {
-    public class UnitOfWork : IUnitOfWork
+    public abstract class BaseRepository : IBaseRepository
     {
         private readonly FutureDbContext _context;
 
-        public UnitOfWork(FutureDbContext context)
+        public BaseRepository(FutureDbContext context)
         {
             _context = context;
         }
 
         public async Task<CommitResult> CommitAsync()
         {
-            var result = new CommitResult { IsSuccessful = true };
-
             try
             {
                 await _context.SaveChangesAsync();
+                return CommitResult.Success;
             }
             catch (Exception ex)
             {
-                result.IsSuccessful = false;
-                result.Exception = ex;
-            }
+                //log
 
-            return result;
+                return CommitResult.Fail;
+            }
         }
 
     }

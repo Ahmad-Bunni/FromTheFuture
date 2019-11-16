@@ -1,10 +1,8 @@
-﻿using System;
-
-namespace FromTheFuture.Domain.Shared
+﻿namespace FromTheFuture.Domain.Shared
 {
-    public class CommitResult
+    public enum CommitResult
     {
-        public bool IsSuccessful { get; set; }
-        public Exception Exception { get; set; }
+        Success,
+        Fail
     }
 }

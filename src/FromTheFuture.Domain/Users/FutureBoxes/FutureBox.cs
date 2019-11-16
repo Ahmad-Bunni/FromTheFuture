@@ -6,26 +6,26 @@ namespace FromTheFuture.Domain.Users.FutureBoxes
 {
     public class FutureBox : BaseEntity
     {
-        public string Name { get; set; }
+        public string Name { get; private set; }
 
-        private readonly List<FutureBoxItem> _futureBoxItems;
+        private ICollection<FutureBoxItem> _futureBoxItems;
 
         private FutureBox()
         {
             _futureBoxItems = new List<FutureBoxItem>();
         }
 
-        public FutureBox(string name, Guid id)
+        public FutureBox(Guid id, string name)
+        {
+            Id = id;
+            Name = name;
+        }
+
+        public void Modify(string name, ICollection<FutureBoxItem> futureBoxItems)
         {
             Name = name;
-            Id = id;
-        }
 
-        public void AddFutureBoxItems(List<FutureBoxItem> futureBoxItems)
-        {
-            if (futureBoxItems.Count > 0)
-                _futureBoxItems.AddRange(futureBoxItems);
+            _futureBoxItems = futureBoxItems;
         }
-
     }
 }

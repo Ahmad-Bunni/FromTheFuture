@@ -1,5 +1,5 @@
 ﻿using FromTheFuture.Domain.Users;
-using FromTheFuture.Infrastructure.SeedWork;
+using FromTheFuture.Infrastructure.Helpers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -9,10 +9,11 @@ namespace FromTheFuture.Infrastructure.Users
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.HasKey("Id");
-            builder.Property("Id").ValueGeneratedNever();
-            builder.HasMany(TableNames.FutureBoxes).WithOne().HasForeignKey("UserID");
-            builder.HasMany(TableNames.FutureItems).WithOne().HasForeignKey("UserID");
+            builder.ToTable("Users", SchemaNames.FutureUser);
+            builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id).ValueGeneratedNever();
+            builder.HasMany(TableNavigationPaths.FutureBoxTable).WithOne().HasForeignKey("UserID").IsRequired();
+            builder.HasMany(TableNavigationPaths.FutureItemTable).WithOne().HasForeignKey("UserID").IsRequired();
 
         }
     }

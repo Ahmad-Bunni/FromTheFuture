@@ -4,10 +4,12 @@ using System.Threading.Tasks;
 
 namespace FromTheFuture.Domain.Users
 {
-    public interface IUserRepository
+    public interface IUserRepository : IBaseRepository
     {
-        Task CreateUser(User user);
+        Task AddUserAsync(User user);
 
         Task<User> GetUserByIdAsync(Guid Id);
+
+        Task<User> GetUserDetailsAsync(Guid Id);
     }
 }

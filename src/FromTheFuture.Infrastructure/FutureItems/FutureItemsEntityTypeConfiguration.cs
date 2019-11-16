@@ -1,15 +1,16 @@
 ﻿using FromTheFuture.Domain.Users.FutureItems;
-using FromTheFuture.Infrastructure.SeedWork;
+using FromTheFuture.Infrastructure.Helpers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace FromTheFuture.Infrastructure.Users.FutureItems
+namespace FromTheFuture.Infrastructure.FutureItems
 {
     public class FutureItemsEntityTypeConfiguration : IEntityTypeConfiguration<FutureItem>
     {
         public void Configure(EntityTypeBuilder<FutureItem> builder)
         {
-            builder.HasMany(TableNames.FutureBoxItems).WithOne().HasForeignKey("FutureItemId");
+            builder.ToTable("FutureItems", SchemaNames.FutureUser);
+            builder.HasMany(TableNavigationPaths.FutureBoxItemTable).WithOne().HasForeignKey("FutureItemId");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedNever();
         }
