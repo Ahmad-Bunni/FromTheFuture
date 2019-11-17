@@ -5,7 +5,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace FromTheFuture.API.FutureItems.CreateUserFutureItem
+namespace FromTheFuture.API.FutureItems.Commands.CreateUserFutureItem
 {
     public class CreateUserFutureItemCommandHandler : IRequestHandler<CreateUserFutureItemCommand, FutureItemDto>
     {
@@ -20,13 +20,20 @@ namespace FromTheFuture.API.FutureItems.CreateUserFutureItem
         {
             var user = await _userRepository.GetUserDetailsAsync(request.UserId);
 
-            var futureItem = new FutureItem(Guid.NewGuid(), request.Name, request.StorageUri, request.ItemType);
+            var futureItem = new FutureItem(Guid.NewGuid(), request.Name, request.StorageUri, request.ItemType, request.IsActive);
 
             user.CreateFutureItem(futureItem);
 
             var result = await _userRepository.CommitAsync();
 
-            return new FutureItemDto { Id = futureItem.Id, Name = futureItem.Name, ItemType = futureItem.ItemType, StorageUri = futureItem.StorageUri };
+            return new FutureItemDto
+            {
+                Id = futureItem.Id,
+                Name = futureItem.Name,
+                ItemType = futureItem.ItemType,
+                StorageUri = futureItem.StorageUri,
+                IsActive = request.IsActive
+            };
 
         }
     }

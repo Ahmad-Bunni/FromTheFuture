@@ -1,12 +1,11 @@
-﻿using FromTheFuture.Domain.Shared;
-using FromTheFuture.Domain.Users;
+﻿using FromTheFuture.Domain.Users;
 using FromTheFuture.Domain.Users.FutureBoxes;
 using MediatR;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace FromTheFuture.API.FutureBoxes.CreateUserFutureBox
+namespace FromTheFuture.API.FutureBoxes.Commands.CreateUserFutureBox
 {
     public class CreateUserFutureBoxCommandHandler : IRequestHandler<CreateUserFutureBoxCommand, FutureBoxDto>
     {

@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
-using FromTheFuture.API.FutureBoxes.CreateUserFutureBox;
-using FromTheFuture.API.FutureBoxes.ModifyUserFutureBox;
+using FromTheFuture.API.FutureBoxes.Commands.CreateUserFutureBox;
+using FromTheFuture.API.FutureBoxes.Commands.ModifyUserFutureBox;
+using FromTheFuture.API.FutureBoxes.Queries.GetUserFutureBoxes;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,6 +21,16 @@ namespace FromTheFuture.API.FutureBoxes
             _mediator = mediator;
         }
 
+        [HttpGet]
+        [Route("{userId}/boxes")]
+        [ProducesResponseType(typeof(List<FutureBoxDto>), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> CreateUserFutureBox(Guid userId)
+        {
+            var futureBoxes = await _mediator.Send(new GetUserFutureBoxesQuery(userId));
+
+            return Ok(futureBoxes);
+        }
+
         [HttpPost]
         [ProducesResponseType(typeof(FutureBoxDto), (int)HttpStatusCode.Created)]
         public async Task<IActionResult> CreateUserFutureBox([FromBody] CreateUserFutureBoxRequest request)
@@ -30,13 +42,13 @@ namespace FromTheFuture.API.FutureBoxes
 
         [Route("{boxId}")]
         [HttpPut]
-        [ProducesResponseType((int)HttpStatusCode.NoContent)]
+        [ProducesResponseType(typeof(FutureBoxDto), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> ModifyUserFutureBox([FromBody] ModifyUserFutureBoxRequest request, Guid boxId)
         {
-            await _mediator.Send(new ModifyUserFutureBoxCommand(boxId,
-               Guid.Parse("00000000-0000-0000-0000-000000000000"), request.Name, request.FutureItemsIds));
+            var futureBox = await _mediator.Send(new ModifyUserFutureBoxCommand(boxId,
+                Guid.Parse("00000000-0000-0000-0000-000000000000"), request.Name, request.FutureItemsIds));
 
-            return NoContent();
+            return Ok(futureBox);
         }
 
 

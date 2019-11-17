@@ -42,7 +42,7 @@ namespace FromTheFuture.Infrastructure.Migrations
                         principalSchema: "user",
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -54,6 +54,7 @@ namespace FromTheFuture.Infrastructure.Migrations
                     Name = table.Column<string>(nullable: true),
                     StorageUri = table.Column<string>(nullable: true),
                     ItemType = table.Column<int>(nullable: false),
+                    IsActive = table.Column<bool>(nullable: false),
                     UserID = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
@@ -65,7 +66,7 @@ namespace FromTheFuture.Infrastructure.Migrations
                         principalSchema: "user",
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -85,14 +86,14 @@ namespace FromTheFuture.Infrastructure.Migrations
                         principalSchema: "user",
                         principalTable: "FutureBoxes",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_FutureBoxItems_FutureItems_FutureItemId",
                         column: x => x.FutureItemId,
                         principalSchema: "user",
                         principalTable: "FutureItems",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(

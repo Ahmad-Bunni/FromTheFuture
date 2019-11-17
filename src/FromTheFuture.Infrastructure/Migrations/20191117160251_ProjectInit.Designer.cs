@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FromTheFuture.Infrastructure.Migrations
 {
     [DbContext(typeof(FutureDbContext))]
-    [Migration("20191116222152_Project-Init")]
+    [Migration("20191117160251_ProjectInit")]
     partial class ProjectInit
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -60,6 +60,9 @@ namespace FromTheFuture.Infrastructure.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<int>("ItemType")
                         .HasColumnType("int");
 
@@ -101,7 +104,7 @@ namespace FromTheFuture.Infrastructure.Migrations
                     b.HasOne("FromTheFuture.Domain.Users.User", null)
                         .WithMany("_futureBoxes")
                         .HasForeignKey("UserID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -110,13 +113,13 @@ namespace FromTheFuture.Infrastructure.Migrations
                     b.HasOne("FromTheFuture.Domain.Users.FutureBoxes.FutureBox", null)
                         .WithMany("_futureBoxItems")
                         .HasForeignKey("FutureBoxId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("FromTheFuture.Domain.Users.FutureItems.FutureItem", null)
                         .WithMany("_futureBoxItems")
                         .HasForeignKey("FutureItemId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -125,7 +128,7 @@ namespace FromTheFuture.Infrastructure.Migrations
                     b.HasOne("FromTheFuture.Domain.Users.User", null)
                         .WithMany("_futureItems")
                         .HasForeignKey("UserID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

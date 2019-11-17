@@ -1,6 +1,6 @@
 ﻿using System.Net;
 using System.Threading.Tasks;
-using FromTheFuture.API.Users.CreateUser;
+using FromTheFuture.API.Users.Commands.CreateUser;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,7 +14,7 @@ namespace FromTheFuture.API.Users
 
         public UsersController(IMediator mediator)
         {
-           _mediator = mediator;
+            _mediator = mediator;
         }
 
         [HttpPost]

@@ -20,7 +20,7 @@ namespace FromTheFuture.Infrastructure
                 await _context.SaveChangesAsync();
                 return CommitResult.Success;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //log
 

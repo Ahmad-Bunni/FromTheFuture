@@ -2,6 +2,7 @@
 using FromTheFuture.Infrastructure.Helpers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System;
 
 namespace FromTheFuture.Infrastructure.FutureItems
 {
@@ -10,7 +11,7 @@ namespace FromTheFuture.Infrastructure.FutureItems
         public void Configure(EntityTypeBuilder<FutureItem> builder)
         {
             builder.ToTable("FutureItems", SchemaNames.FutureUser);
-            builder.HasMany(TableNavigationPaths.FutureBoxItemTable).WithOne().HasForeignKey("FutureItemId");
+            builder.HasMany(TableNavigationPaths.FutureBoxItemTable).WithOne().HasForeignKey("FutureItemId").OnDelete(DeleteBehavior.Restrict);
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedNever();
         }

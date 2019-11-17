@@ -43,5 +43,12 @@ namespace FromTheFuture.Domain.Users
             futureBox.Modify(name, futureBoxItems);
 
         }
+
+        public void ModifyFutureItem(Guid itemId, string name, Uri storageUri, FutureItemTypes itemType, bool isActive)
+        {
+            var futureItem = _futureItems.SingleOrDefault(x => x.Id == itemId);
+
+            futureItem.Modify(name, storageUri, itemType, isActive);
+        }
     }
 }

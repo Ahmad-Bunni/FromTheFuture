@@ -1,11 +1,10 @@
-﻿using FromTheFuture.Domain.Users.FutureItems;
-using MediatR;
+﻿using MediatR;
 using System;
 using System.Collections.Generic;
 
-namespace FromTheFuture.API.FutureBoxes.ModifyUserFutureBox
+namespace FromTheFuture.API.FutureBoxes.Commands.ModifyUserFutureBox
 {
-    public class ModifyUserFutureBoxCommand : IRequest
+    public class ModifyUserFutureBoxCommand : IRequest<FutureBoxDto>
     {
         public Guid UserId { get; set; }
         public Guid BoxId { get; set; }

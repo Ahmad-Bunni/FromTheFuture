@@ -1,14 +1,13 @@
 ﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using FromTheFuture.Domain.Shared;
 using FromTheFuture.Domain.Users;
 using FromTheFuture.Domain.Users.FutureBoxes;
 using MediatR;
 
-namespace FromTheFuture.API.FutureBoxes.ModifyUserFutureBox
+namespace FromTheFuture.API.FutureBoxes.Commands.ModifyUserFutureBox
 {
-    public class ModifyUserFutureBoxCommandHandler : IRequestHandler<ModifyUserFutureBoxCommand>
+    public class ModifyUserFutureBoxCommandHandler : IRequestHandler<ModifyUserFutureBoxCommand, FutureBoxDto>
     {
         private readonly IUserRepository _userRepository;
 
@@ -16,7 +15,7 @@ namespace FromTheFuture.API.FutureBoxes.ModifyUserFutureBox
         {
             _userRepository = userRepository;
         }
-        public async Task<Unit> Handle(ModifyUserFutureBoxCommand request, CancellationToken cancellationToken)
+        public async Task<FutureBoxDto> Handle(ModifyUserFutureBoxCommand request, CancellationToken cancellationToken)
         {
             var user = await _userRepository.GetUserDetailsAsync(request.UserId);
 
@@ -26,7 +25,7 @@ namespace FromTheFuture.API.FutureBoxes.ModifyUserFutureBox
 
             var result = await _userRepository.CommitAsync();
 
-            return await Unit.Task;
+            return new FutureBoxDto();
         }
     }
 }

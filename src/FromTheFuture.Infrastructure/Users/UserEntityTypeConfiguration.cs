@@ -12,8 +12,8 @@ namespace FromTheFuture.Infrastructure.Users
             builder.ToTable("Users", SchemaNames.FutureUser);
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedNever();
-            builder.HasMany(TableNavigationPaths.FutureBoxTable).WithOne().HasForeignKey("UserID").IsRequired();
-            builder.HasMany(TableNavigationPaths.FutureItemTable).WithOne().HasForeignKey("UserID").IsRequired();
+            builder.HasMany(TableNavigationPaths.FutureBoxTable).WithOne().HasForeignKey("UserID").IsRequired().OnDelete(DeleteBehavior.Restrict);
+            builder.HasMany(TableNavigationPaths.FutureItemTable).WithOne().HasForeignKey("UserID").IsRequired().OnDelete(DeleteBehavior.Restrict);
 
         }
     }

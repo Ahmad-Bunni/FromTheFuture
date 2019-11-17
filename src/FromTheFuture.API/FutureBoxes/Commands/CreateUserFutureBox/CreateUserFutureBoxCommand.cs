@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using System;
 
-namespace FromTheFuture.API.FutureBoxes.CreateUserFutureBox
+namespace FromTheFuture.API.FutureBoxes.Commands.CreateUserFutureBox
 {
     public class CreateUserFutureBoxCommand : IRequest<FutureBoxDto>
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace FromTheFuture.API.FutureBoxes.ModifyUserFutureBox
+namespace FromTheFuture.API.FutureBoxes.Commands.ModifyUserFutureBox
 {
     public class ModifyUserFutureBoxRequest
     {

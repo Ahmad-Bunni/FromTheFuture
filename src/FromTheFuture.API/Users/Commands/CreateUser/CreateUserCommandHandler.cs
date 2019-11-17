@@ -5,7 +5,7 @@ using FromTheFuture.Domain.Shared;
 using FromTheFuture.Domain.Users;
 using MediatR;
 
-namespace FromTheFuture.API.Users.CreateUser
+namespace FromTheFuture.API.Users.Commands.CreateUser
 {
     public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, UserDto>
     {

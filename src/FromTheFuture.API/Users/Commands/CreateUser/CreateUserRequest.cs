@@ -1,4 +1,4 @@
-﻿namespace FromTheFuture.API.Users.CreateUser
+﻿namespace FromTheFuture.API.Users.Commands.CreateUser
 {
     public class CreateUserRequest
     {

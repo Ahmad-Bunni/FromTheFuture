@@ -1,6 +1,7 @@
 using FromTheFuture.Domain.Shared;
 using FromTheFuture.Domain.Users;
 using FromTheFuture.Infrastructure;
+using FromTheFuture.Infrastructure.Helpers;
 using FromTheFuture.Infrastructure.Users;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -25,6 +26,8 @@ namespace FromTheFuture.API
             services.AddScoped<FutureDbContext, FutureDbContext>();
             services.AddDbContext<FutureDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddScoped<ISqlConnectionFactory>(_ => new SqlConnectionFactory(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddScoped<IUserRepository, UserRepository>();
 

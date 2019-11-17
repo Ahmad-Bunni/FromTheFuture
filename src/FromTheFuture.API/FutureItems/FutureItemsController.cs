@@ -1,4 +1,5 @@
-﻿using FromTheFuture.API.FutureItems.CreateUserFutureItem;
+﻿using FromTheFuture.API.FutureItems.Commands.CreateUserFutureItem;
+using FromTheFuture.API.FutureItems.Commands.ModifyUserFutureItem;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -22,9 +23,19 @@ namespace FromTheFuture.API.FutureItems
         [ProducesResponseType(typeof(FutureItemDto), (int)HttpStatusCode.Created)]
         public async Task<IActionResult> CreateFutureItem(CreateUserFutureItemRequest request)
         {
-            var futureItem = await _mediator.Send(new CreateUserFutureItemCommand(Guid.Parse("00000000-0000-0000-0000-000000000000"), request.Name, request.StorageUri, request.ItemType));
+            var futureItem = await _mediator.Send(new CreateUserFutureItemCommand(Guid.Parse("00000000-0000-0000-0000-000000000000"), request.Name, request.StorageUri, request.ItemType, request.IsActive));
 
             return Created(string.Empty, futureItem);
+        }
+
+        [Route("{itemId}")]
+        [HttpPut]
+        [ProducesResponseType(typeof(FutureItemDto), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> ModifyFutureItem(ModifyUserFutureItemRequest request, Guid itemId)
+        {
+            var futureItem = await _mediator.Send(new ModifyUserFutureItemCommand(itemId, Guid.Parse("00000000-0000-0000-0000-000000000000"), request.Name, request.StorageUri, request.ItemType, request.IsActive));
+
+            return Ok(futureItem);
         }
     }
 }

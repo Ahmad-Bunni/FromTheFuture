@@ -1,4 +1,4 @@
-﻿namespace FromTheFuture.API.FutureBoxes.CreateUserFutureBox
+﻿namespace FromTheFuture.API.FutureBoxes.Commands.CreateUserFutureBox
 {
     public class CreateUserFutureBoxRequest
     {

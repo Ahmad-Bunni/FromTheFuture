@@ -24,6 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.0.30" />
     <PackageReference Include="MediatR" Version="7.0.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.0.0" />
@@ -36,7 +37,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Users\ActivateUser\" />
+    <Folder Include="FutureItems\Queries\GetUserFutureItems\" />
+    <Folder Include="Users\Commands\ActivateUser\" />
   </ItemGroup>
 
   <ItemGroup>

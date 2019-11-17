@@ -10,7 +10,7 @@ namespace FromTheFuture.Infrastructure.FutureBoxes
         public void Configure(EntityTypeBuilder<FutureBox> builder)
         {
             builder.ToTable("FutureBoxes", SchemaNames.FutureUser);
-            builder.HasMany(TableNavigationPaths.FutureBoxItemTable).WithOne().HasForeignKey("FutureBoxId");
+            builder.HasMany(TableNavigationPaths.FutureBoxItemTable).WithOne().HasForeignKey("FutureBoxId").OnDelete(DeleteBehavior.Restrict);
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedNever();
         }
