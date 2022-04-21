@@ -1,11 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Users\Templates\" />
+    <Compile Remove="Users\Templates\**" />
+    <EmbeddedResource Remove="Users\Templates\**" />
+    <None Remove="Users\Templates\**" />
   </ItemGroup>
 
 </Project>

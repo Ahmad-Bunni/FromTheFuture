@@ -5,22 +5,17 @@ using FromTheFuture.Infrastructure.FutureItems;
 using FromTheFuture.Infrastructure.Users;
 using Microsoft.EntityFrameworkCore;
 
-namespace FromTheFuture.Infrastructure
+namespace FromTheFuture.Infrastructure;
+
+public class FutureDbContext : DbContext
 {
-    public class FutureDbContext : DbContext
+    public DbSet<User> Users { get; set; }
+    public FutureDbContext(DbContextOptions<FutureDbContext> options) : base(options) { }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        public DbSet<User> Users { get; set; }
-        public FutureDbContext(DbContextOptions<FutureDbContext> options) : base(options)
-        {
-
-        }
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.ApplyConfiguration(new UserEntityTypeConfiguration());
-            modelBuilder.ApplyConfiguration(new FutureBoxEntityTypeConfiguration());
-            modelBuilder.ApplyConfiguration(new FutureItemsEntityTypeConfiguration());
-            modelBuilder.ApplyConfiguration(new FutureBoxItemsEntityTypeConfiguration());
-
-        }
+        modelBuilder.ApplyConfiguration(new UserEntityTypeConfiguration());
+        modelBuilder.ApplyConfiguration(new FutureBoxEntityTypeConfiguration());
+        modelBuilder.ApplyConfiguration(new FutureItemsEntityTypeConfiguration());
+        modelBuilder.ApplyConfiguration(new FutureBoxItemsEntityTypeConfiguration());
     }
 }

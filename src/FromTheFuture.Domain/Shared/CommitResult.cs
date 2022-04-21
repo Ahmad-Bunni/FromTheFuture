@@ -1,8 +1,7 @@
-﻿namespace FromTheFuture.Domain.Shared
+﻿namespace FromTheFuture.Domain.Shared;
+
+public enum CommitResult
 {
-    public enum CommitResult
-    {
-        Success,
-        Fail
-    }
+    Success,
+    Fail
 }

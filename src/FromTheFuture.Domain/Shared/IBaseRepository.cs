@@ -1,9 +1,8 @@
 ﻿using System.Threading.Tasks;
 
-namespace FromTheFuture.Domain.Shared
+namespace FromTheFuture.Domain.Shared;
+
+public interface IBaseRepository
 {
-    public interface IBaseRepository
-    {
-        Task<CommitResult> CommitAsync();
-    }
+    Task<CommitResult> CommitAsync();
 }

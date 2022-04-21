@@ -1,14 +1,13 @@
 ﻿using FromTheFuture.Domain.Users.FutureItems;
 using System;
 
-namespace FromTheFuture.API.FutureItems
+namespace FromTheFuture.API.FutureItems;
+
+public record FutureItemDto
 {
-    public class FutureItemDto
-    {
-        public Guid Id { get; set; }
-        public string Name { get; set; }
-        public Uri StorageUri { get; set; }
-        public FutureItemTypes ItemType { get; set; }
-        public bool IsActive { get; set; }
-    }
+    public Guid Id { get; init; }
+    public string Name { get; init; }
+    public Uri StorageUri { get; init; }
+    public FutureItemTypes ItemType { get; init; }
+    public bool IsActive { get; init; }
 }

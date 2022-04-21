@@ -1,7 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
+    <UserSecretsId>53a4c43c-5d9c-49db-ba13-f4162e54eb6d</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 
   <ItemGroup>
@@ -9,36 +11,40 @@
     <Compile Remove="FutureBoxes\GetUserFutureBoxDetails\**" />
     <Compile Remove="FutureBoxes\GetUserReceivedBoxes\**" />
     <Compile Remove="FutureBoxes\GetUserSentBoxes\**" />
+    <Compile Remove="FutureItems\Queries\**" />
+    <Compile Remove="Users\Commands\ActivateUser\**" />
     <Content Remove="FutureBoxes\DeleteUserFutureBox\**" />
     <Content Remove="FutureBoxes\GetUserFutureBoxDetails\**" />
     <Content Remove="FutureBoxes\GetUserReceivedBoxes\**" />
     <Content Remove="FutureBoxes\GetUserSentBoxes\**" />
+    <Content Remove="FutureItems\Queries\**" />
+    <Content Remove="Users\Commands\ActivateUser\**" />
     <EmbeddedResource Remove="FutureBoxes\DeleteUserFutureBox\**" />
     <EmbeddedResource Remove="FutureBoxes\GetUserFutureBoxDetails\**" />
     <EmbeddedResource Remove="FutureBoxes\GetUserReceivedBoxes\**" />
     <EmbeddedResource Remove="FutureBoxes\GetUserSentBoxes\**" />
+    <EmbeddedResource Remove="FutureItems\Queries\**" />
+    <EmbeddedResource Remove="Users\Commands\ActivateUser\**" />
     <None Remove="FutureBoxes\DeleteUserFutureBox\**" />
     <None Remove="FutureBoxes\GetUserFutureBoxDetails\**" />
     <None Remove="FutureBoxes\GetUserReceivedBoxes\**" />
     <None Remove="FutureBoxes\GetUserSentBoxes\**" />
+    <None Remove="FutureItems\Queries\**" />
+    <None Remove="Users\Commands\ActivateUser\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Dapper" Version="2.0.30" />
-    <PackageReference Include="MediatR" Version="7.0.0" />
-    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.0">
+    <PackageReference Include="Dapper" Version="2.0.123" />
+    <PackageReference Include="MediatR" Version="10.0.1" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.4">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.0.0" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="FutureItems\Queries\GetUserFutureItems\" />
-    <Folder Include="Users\Commands\ActivateUser\" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="6.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.14.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.3" />
   </ItemGroup>
 
   <ItemGroup>

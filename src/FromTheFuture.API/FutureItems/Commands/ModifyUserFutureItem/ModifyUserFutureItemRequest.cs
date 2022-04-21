@@ -1,13 +1,12 @@
 ﻿using FromTheFuture.Domain.Users.FutureItems;
 using System;
 
-namespace FromTheFuture.API.FutureItems.Commands.ModifyUserFutureItem
+namespace FromTheFuture.API.FutureItems.Commands.ModifyUserFutureItem;
+
+public record ModifyUserFutureItemRequest
 {
-    public class ModifyUserFutureItemRequest
-    {
-        public string Name { get; set; }
-        public Uri StorageUri { get; set; }
-        public FutureItemTypes ItemType { get; set; }
-        public bool IsActive { get; set; }
-    }
+    public string Name { get; init; }
+    public Uri StorageUri { get; init; }
+    public FutureItemTypes ItemType { get; init; }
+    public bool IsActive { get; init; }
 }

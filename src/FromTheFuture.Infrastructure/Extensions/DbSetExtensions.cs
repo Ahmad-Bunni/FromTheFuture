@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Query.Internal;
 using System.Linq;
 
-namespace FromTheFuture.Infrastructure.Helpers
+namespace FromTheFuture.Infrastructure.Extensions
 {
     public static class DbSetExtensions
     {

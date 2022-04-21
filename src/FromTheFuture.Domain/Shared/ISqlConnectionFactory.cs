@@ -1,9 +1,8 @@
 ﻿using System.Data;
 
-namespace FromTheFuture.Domain.Shared
+namespace FromTheFuture.Domain.Shared;
+
+public interface ISqlConnectionFactory
 {
-    public interface ISqlConnectionFactory
-    {
-        IDbConnection GetOpenConnection();
-    }
+    IDbConnection GetOpenConnection();
 }

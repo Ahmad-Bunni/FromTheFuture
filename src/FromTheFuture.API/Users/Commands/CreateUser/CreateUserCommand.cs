@@ -1,17 +1,15 @@
 ﻿using MediatR;
 
-namespace FromTheFuture.API.Users.Commands.CreateUser
+namespace FromTheFuture.API.Users.Commands.CreateUser;
+
+public record CreateUserCommand : IRequest<UserDto>
 {
-    public class CreateUserCommand : IRequest<UserDto>
+    public string Email { get; }
+    public string Name { get; }
+
+    public CreateUserCommand(string email, string name)
     {
-        public string Email { get; }
-
-        public string Name { get; }
-
-        public CreateUserCommand(string email, string name)
-        {
-            Email = email;
-            Name = name;
-        }
+        Email = email;
+        Name = name;
     }
 }

@@ -1,31 +1,30 @@
-﻿using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using FromTheFuture.Domain.Users;
+﻿using FromTheFuture.Domain.Users;
 using FromTheFuture.Domain.Users.FutureBoxes;
 using MediatR;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
-namespace FromTheFuture.API.FutureBoxes.Commands.ModifyUserFutureBox
+namespace FromTheFuture.API.FutureBoxes.Commands.ModifyUserFutureBox;
+
+public class ModifyUserFutureBoxCommandHandler : IRequestHandler<ModifyUserFutureBoxCommand, FutureBoxDto>
 {
-    public class ModifyUserFutureBoxCommandHandler : IRequestHandler<ModifyUserFutureBoxCommand, FutureBoxDto>
+    private readonly IUserRepository _userRepository;
+
+    public ModifyUserFutureBoxCommandHandler(IUserRepository userRepository)
     {
-        private readonly IUserRepository _userRepository;
+        _userRepository = userRepository;
+    }
+    public async Task<FutureBoxDto> Handle(ModifyUserFutureBoxCommand request, CancellationToken cancellationToken)
+    {
+        var user = await _userRepository.GetUserDetailsAsync(request.UserId);
 
-        public ModifyUserFutureBoxCommandHandler(IUserRepository userRepository)
-        {
-            _userRepository = userRepository;
-        }
-        public async Task<FutureBoxDto> Handle(ModifyUserFutureBoxCommand request, CancellationToken cancellationToken)
-        {
-            var user = await _userRepository.GetUserDetailsAsync(request.UserId);
+        var futureBoxItems = request.FutureItemsIds?.Select(x => new FutureBoxItem { FutureBoxId = request.BoxId, FutureItemId = x }).ToList();
 
-            var futureBoxItems = request.FutureItemsIds?.Select(x => new FutureBoxItem { FutureBoxId = request.BoxId, FutureItemId = x }).ToList();
+        user.ModifyFutureBox(request.BoxId, request.Name, futureBoxItems);
 
-            user.ModifyFutureBox(request.BoxId, request.Name, futureBoxItems);
+        var result = await _userRepository.CommitAsync();
 
-            var result = await _userRepository.CommitAsync();
-
-            return new FutureBoxDto();
-        }
+        return new FutureBoxDto();
     }
 }

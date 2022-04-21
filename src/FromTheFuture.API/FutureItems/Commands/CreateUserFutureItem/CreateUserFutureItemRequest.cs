@@ -1,14 +1,12 @@
 ﻿using FromTheFuture.Domain.Users.FutureItems;
 using System;
 
-namespace FromTheFuture.API.FutureItems.Commands.CreateUserFutureItem
-{
-    public class CreateUserFutureItemRequest
-    {
-        public string Name { get; set; }
-        public Uri StorageUri { get; set; }
-        public FutureItemTypes ItemType { get; set; }
+namespace FromTheFuture.API.FutureItems.Commands.CreateUserFutureItem;
 
-        public bool IsActive { get; set; }
-    }
+public record CreateUserFutureItemRequest
+{
+    public string Name { get; init; }
+    public bool IsActive { get; init; }
+    public Uri StorageUri { get; init; }
+    public FutureItemTypes ItemType { get; init; }
 }

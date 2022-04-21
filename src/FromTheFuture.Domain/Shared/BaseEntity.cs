@@ -1,9 +1,8 @@
 ﻿using System;
 
-namespace FromTheFuture.Domain.Shared
+namespace FromTheFuture.Domain.Shared;
+
+public abstract class BaseEntity
 {
-    public abstract class BaseEntity
-    {
-        public Guid Id { get; set; }
-    }
+    public Guid Id { get; protected init; }
 }

@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace FromTheFuture.API.FutureBoxes.Commands.ModifyUserFutureBox
-{
-    public class ModifyUserFutureBoxRequest
-    {
-        public string Name { get; set; }
+namespace FromTheFuture.API.FutureBoxes.Commands.ModifyUserFutureBox;
 
-        public ICollection<Guid> FutureItemsIds { get; set; }
-    }
+public record ModifyUserFutureBoxRequest
+{
+    public string Name { get; init; }
+
+    public ICollection<Guid> FutureItemsIds { get; init; }
 }

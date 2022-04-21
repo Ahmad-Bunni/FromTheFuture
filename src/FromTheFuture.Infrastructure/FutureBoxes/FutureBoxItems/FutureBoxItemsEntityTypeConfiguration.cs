@@ -1,16 +1,15 @@
 ﻿using FromTheFuture.Domain.Users.FutureBoxes;
-using FromTheFuture.Infrastructure.Helpers;
+using FromTheFuture.Infrastructure.Constants;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace FromTheFuture.Infrastructure.FutureBoxes.FutureBoxItems
+namespace FromTheFuture.Infrastructure.FutureBoxes.FutureBoxItems;
+
+public class FutureBoxItemsEntityTypeConfiguration : IEntityTypeConfiguration<FutureBoxItem>
 {
-    public class FutureBoxItemsEntityTypeConfiguration : IEntityTypeConfiguration<FutureBoxItem>
+    public void Configure(EntityTypeBuilder<FutureBoxItem> builder)
     {
-        public void Configure(EntityTypeBuilder<FutureBoxItem> builder)
-        {
-            builder.ToTable("FutureBoxItems", SchemaNames.FutureUser);
-            builder.HasKey(x => new { x.FutureBoxId, x.FutureItemId });
-        }
+        builder.ToTable("FutureBoxItems", SchemaNames.FutureUser);
+        builder.HasKey(x => new { x.FutureBoxId, x.FutureItemId });
     }
 }

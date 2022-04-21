@@ -1,11 +1,10 @@
 ﻿using System;
 
-namespace FromTheFuture.Domain.Users.FutureBoxes
-{
-    public class FutureBoxItem
-    {
-        public Guid FutureBoxId { get; set; }
+namespace FromTheFuture.Domain.Users.FutureBoxes;
 
-        public Guid FutureItemId { get; set; }
-    }
+public record FutureBoxItem
+{
+    public Guid FutureBoxId { get; init; }
+
+    public Guid FutureItemId { get; init; }
 }

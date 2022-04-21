@@ -5,28 +5,28 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace FromTheFuture.API.FutureBoxes.Commands.CreateUserFutureBox
+namespace FromTheFuture.API.FutureBoxes.Commands.CreateUserFutureBox;
+
+public class CreateUserFutureBoxCommandHandler : IRequestHandler<CreateUserFutureBoxCommand, FutureBoxDto>
 {
-    public class CreateUserFutureBoxCommandHandler : IRequestHandler<CreateUserFutureBoxCommand, FutureBoxDto>
+    private readonly IUserRepository _userRepository;
+
+    public CreateUserFutureBoxCommandHandler(IUserRepository userRepository)
     {
-        private readonly IUserRepository _userRepository;
+        _userRepository = userRepository;
+    }
 
-        public CreateUserFutureBoxCommandHandler(IUserRepository userRepository)
-        {
-            _userRepository = userRepository;
-        }
-        public async Task<FutureBoxDto> Handle(CreateUserFutureBoxCommand request, CancellationToken cancellationToken)
-        {
-            var user = await _userRepository.GetUserByIdAsync(request.UserId);
+    public async Task<FutureBoxDto> Handle(CreateUserFutureBoxCommand request, CancellationToken cancellationToken)
+    {
+        var user = await _userRepository.GetUserByIdAsync(request.UserId);
 
-            var futureBox = new FutureBox(Guid.NewGuid(), request.Name);
+        var futureBox = new FutureBox(Guid.NewGuid(), request.Name);
 
-            user.CreateFutureBox(futureBox);
+        user.CreateFutureBox(futureBox);
 
-            var result = await _userRepository.CommitAsync();
+        var result = await _userRepository.CommitAsync();
 
-            return new FutureBoxDto { Id = futureBox.Id, Name = futureBox.Name };
+        return new FutureBoxDto { Id = futureBox.Id, Name = futureBox.Name };
 
-        }
     }
 }

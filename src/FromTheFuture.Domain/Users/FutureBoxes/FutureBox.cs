@@ -2,30 +2,29 @@
 using System;
 using System.Collections.Generic;
 
-namespace FromTheFuture.Domain.Users.FutureBoxes
+namespace FromTheFuture.Domain.Users.FutureBoxes;
+
+public class FutureBox : BaseEntity
 {
-    public class FutureBox : BaseEntity
+    public string Name { get; private set; }
+
+    private ICollection<FutureBoxItem> _futureBoxItems;
+
+    private FutureBox()
     {
-        public string Name { get; private set; }
+        _futureBoxItems = new List<FutureBoxItem>();
+    }
 
-        private ICollection<FutureBoxItem> _futureBoxItems;
+    public FutureBox(Guid id, string name)
+    {
+        Id = id;
+        Name = name;
+    }
 
-        private FutureBox()
-        {
-            _futureBoxItems = new List<FutureBoxItem>();
-        }
+    public void Modify(string name, ICollection<FutureBoxItem> futureBoxItems)
+    {
+        Name = name;
 
-        public FutureBox(Guid id, string name)
-        {
-            Id = id;
-            Name = name;
-        }
-
-        public void Modify(string name, ICollection<FutureBoxItem> futureBoxItems)
-        {
-            Name = name;
-
-            _futureBoxItems = futureBoxItems;
-        }
+        _futureBoxItems = futureBoxItems;
     }
 }

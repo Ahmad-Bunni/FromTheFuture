@@ -2,14 +2,11 @@
 using System;
 using System.Threading.Tasks;
 
-namespace FromTheFuture.Domain.Users
+namespace FromTheFuture.Domain.Users;
+
+public interface IUserRepository : IBaseRepository
 {
-    public interface IUserRepository : IBaseRepository
-    {
-        Task AddUserAsync(User user);
-
-        Task<User> GetUserByIdAsync(Guid Id);
-
-        Task<User> GetUserDetailsAsync(Guid Id);
-    }
+    Task AddUserAsync(User user);
+    Task<User> GetUserByIdAsync(Guid Id);
+    Task<User> GetUserDetailsAsync(Guid Id);
 }

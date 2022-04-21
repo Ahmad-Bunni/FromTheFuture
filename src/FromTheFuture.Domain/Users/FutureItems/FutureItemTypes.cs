@@ -1,10 +1,9 @@
-﻿namespace FromTheFuture.Domain.Users.FutureItems
+﻿namespace FromTheFuture.Domain.Users.FutureItems;
+
+public enum FutureItemTypes
 {
-    public enum FutureItemTypes
-    {
-        Photo,
-        Video,
-        Audio,
-        Text
-    }
+    Photo,
+    Video,
+    Audio,
+    Text
 }

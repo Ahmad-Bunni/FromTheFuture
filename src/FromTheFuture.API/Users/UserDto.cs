@@ -1,9 +1,8 @@
 ﻿using System;
 
-namespace FromTheFuture.API.Users
+namespace FromTheFuture.API.Users;
+
+public record UserDto
 {
-    public class UserDto
-    {
-        public Guid Id { get; set; }
-    }
+    public Guid Id { get; init; }
 }

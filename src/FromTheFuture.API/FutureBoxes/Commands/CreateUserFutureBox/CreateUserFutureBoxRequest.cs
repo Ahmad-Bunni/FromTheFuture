@@ -1,7 +1,6 @@
-﻿namespace FromTheFuture.API.FutureBoxes.Commands.CreateUserFutureBox
+﻿namespace FromTheFuture.API.FutureBoxes.Commands.CreateUserFutureBox;
+
+public record CreateUserFutureBoxRequest
 {
-    public class CreateUserFutureBoxRequest
-    {
-        public string Name { get; set; }
-    }
+    public string Name { get; init; }
 }

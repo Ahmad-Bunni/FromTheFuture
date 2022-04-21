@@ -1,9 +1,7 @@
-﻿namespace FromTheFuture.API.Users.Commands.CreateUser
-{
-    public class CreateUserRequest
-    {
-        public string Name { get; set; }
+﻿namespace FromTheFuture.API.Users.Commands.CreateUser;
 
-        public string Email { get; set; }
-    }
+public record CreateUserRequest
+{
+    public string Name { get; init; }
+    public string Email { get; init; }
 }

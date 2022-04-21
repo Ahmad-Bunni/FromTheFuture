@@ -22,8 +22,6 @@ namespace FromTheFuture.Infrastructure
             }
             catch (Exception)
             {
-                //log
-
                 return CommitResult.Fail;
             }
         }
